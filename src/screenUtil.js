@@ -5,10 +5,10 @@
 import { Dimensions, StyleSheet } from 'react-native';
 
 /* 设备宽度 */
-export const deviceWidth = Dimensions.get('window').width;
+export const deviceWidth = () => Dimensions.get('window').width;
 
 /* 设备高度 */
-export const deviceHeight = Dimensions.get('window').height;
+export const deviceHeight = () => Dimensions.get('window').height;
 
 /*
  * 屏幕基准宽度
@@ -16,10 +16,10 @@ export const deviceHeight = Dimensions.get('window').height;
 let baseWidth = 750;
 
 // 单个像素大小，宽度
-let w_pixelScale = deviceWidth / baseWidth;
+let w_pixelScale = () => deviceWidth() / baseWidth;
 
 // 单个像素大小，高度
-let h_pixelScale = deviceHeight / 100;
+let h_pixelScale = () => deviceHeight() / 100;
 
 /**
  * 设置屏幕基准宽度
@@ -28,7 +28,7 @@ let h_pixelScale = deviceHeight / 100;
  */
 export const setBaseWidth = width => {
   baseWidth = width;
-  w_pixelScale = deviceWidth / width;
+  w_pixelScale = deviceWidth() / width;
 };
 
 /**
@@ -48,7 +48,7 @@ export const rpx = width => {
     return hairlineWidth * (width > 0 ? 1 : -1);
   }
 
-  const actualWidth = w_pixelScale * width;
+  const actualWidth = w_pixelScale() * width;
 
   // 计算结果小于 hairlineWidth 则返回 hairlineWidth
   if (Math.abs(actualWidth) <= hairlineWidth) {
@@ -64,5 +64,5 @@ export const rpx = width => {
  * @return {Number}    vh 高度
  */
 export const vh = height => {
-  return Math.floor(h_pixelScale * height);
+  return Math.floor(h_pixelScale() * height);
 };

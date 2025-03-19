@@ -1,6 +1,6 @@
 declare const create: Function;
-declare const deviceWidth: number;
-declare const deviceHeight: number;
+declare const deviceWidth: () => number;
+declare const deviceHeight: () => number;
 declare const setBaseWidth: Function;
 declare const rpx: Function;
 declare const itemCreate: Function;
@@ -8,8 +8,8 @@ declare const unitFmt: Function;
 
 type Style = {
   create: Function;
-  deviceWidth: number;
-  deviceHeight: number;
+  deviceWidth: () => number;
+  deviceHeight: () => number;
   setBaseWidth: Function;
   rpx: Function;
   itemCreate: Function;
