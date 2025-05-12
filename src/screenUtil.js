@@ -28,7 +28,7 @@ let h_pixelScale = () => deviceHeight() / 100;
  */
 export const setBaseWidth = width => {
   baseWidth = width;
-  w_pixelScale = deviceWidth() / width;
+  w_pixelScale = () => deviceWidth() / width;
 };
 
 /**
