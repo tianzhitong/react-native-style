@@ -15,14 +15,24 @@ function _extends() {
   return _extends.apply(this, arguments);
 }
 
-var deviceWidth = Dimensions.get('window').width;
-var deviceHeight = Dimensions.get('window').height;
+var deviceWidth = function deviceWidth() {
+  return Dimensions.get('window').width;
+};
+var deviceHeight = function deviceHeight() {
+  return Dimensions.get('window').height;
+};
 var baseWidth = 750;
-var w_pixelScale = deviceWidth / baseWidth;
-var h_pixelScale = deviceHeight / 100;
+var w_pixelScale = function w_pixelScale() {
+  return deviceWidth() / baseWidth;
+};
+var h_pixelScale = function h_pixelScale() {
+  return deviceHeight() / 100;
+};
 var setBaseWidth = function setBaseWidth(width) {
   baseWidth = width;
-  w_pixelScale = deviceWidth / width;
+  w_pixelScale = function w_pixelScale() {
+    return deviceWidth() / width;
+  };
 };
 var rpx = function rpx(width) {
   if (width === 0) {
@@ -32,14 +42,14 @@ var rpx = function rpx(width) {
   if (Math.abs(width) === 1) {
     return hairlineWidth * (width > 0 ? 1 : -1);
   }
-  var actualWidth = w_pixelScale * width;
+  var actualWidth = w_pixelScale() * width;
   if (Math.abs(actualWidth) <= hairlineWidth) {
     return hairlineWidth * (width > 0 ? 1 : -1);
   }
   return Math.floor(actualWidth);
 };
 var vh = function vh(height) {
-  return Math.floor(h_pixelScale * height);
+  return Math.floor(h_pixelScale() * height);
 };
 
 var isNumber = function isNumber(arg) {
